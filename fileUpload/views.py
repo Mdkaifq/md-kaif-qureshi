@@ -19,9 +19,9 @@ def uploadFile(request):
 
         combinedList = zip(df['Cust State'].tolist(), df['Cust Pin'].tolist(), df['DPD'].tolist())
         
-        return render(request, 'templates/display.html', {'combinedList': combinedList})
+        return render(request, 'display.html', {'combinedList': combinedList})
 
-    return render(request, 'templates/fileUpload.html')
+    return render(request, 'fileUpload.html')
 
 
 
@@ -35,7 +35,7 @@ def sendEmail(request):
         combined_list = zip(list1, list2, list3)
 
         
-        email_body = render_to_string('templates/mailTemplate.txt', {'combined_list': combined_list})
+        email_body = render_to_string('mailTemplate.txt', {'combined_list': combined_list})
 
         
         email = EmailMessage(
@@ -49,6 +49,6 @@ def sendEmail(request):
         # Send the email
         email.send()
 
-        return render(request, 'templates/display.html', {'alert_message': "email sent succesfully!"})
+        return render(request, 'display.html', {'alert_message': "email sent succesfully!"})
 
     return redirect('send_email')
