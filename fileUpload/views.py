@@ -9,7 +9,7 @@ from django.conf import settings
 def uploadFile(request):
     if request.method == 'POST' and 'document' in request.FILES:
         file = request.FILES['document']
-        # Read the file
+        
         if file.name.endswith('.csv'):
             df = pd.read_csv(file)
         elif file.name.endswith(('.xls', '.xlsx')):
@@ -42,11 +42,11 @@ def sendEmail(request):
             subject='Python Assignment - Md Kaif Qureshi',
             body=email_body,
             from_email=settings.DEFAULT_FROM_EMAIL,
-            to=['kaifqureshi360@gmail.com'],  # Recipient's email
-            cc=['kaifxdd@gmail.com'],  # CC email
+            to=['tech@themedius.ai'],  
+            cc=['yash@themedius.ai'],  
         )
 
-        # Send the email
+        
         email.send()
 
         return render(request, 'display.html', {'alert_message': "email sent succesfully!"})
