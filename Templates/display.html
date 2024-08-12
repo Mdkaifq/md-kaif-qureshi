@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DevTest</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+ 
+    
+    <form method="post" action="{% url 'send_email' %}" class="mb-4">
+      {% csrf_token %}
+    
+      <div class="d-flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-primary">Send Email</button>
+      </div>
+       {% if alert_message %}
+       <center>
+         
+         <ul class=" mt-3 list-unstyled">
+           <li class="text-success" >{{ alert_message }}</li>
+           
+           <li>to: tech@themedius.ai</li>
+           
+           <li>cc: yash@themedius.ai</li>
+          </ul>
+        </center>
+        {% endif %}
+      <div class="table-responsive">
+        <table class="table table-sm table-bordered table-hover mt-3">
+          <thead >
+            <tr>
+              <th scope="col" class="bg-warning" >No.</th>
+              <th scope="col" class="bg-warning" >Cust State</th>
+              <th scope="col" class="bg-warning" >Cust Pin</th>
+              <th scope="col" class="bg-warning" >DPD</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for a, b, c in combinedList %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ a }}</td>
+              <td>{{ b }}</td>
+              <td>{{ c }}</td>
+            </tr>
+            <input type="hidden" name="list1[]" value="{{ a }}" />
+            <input type="hidden" name="list2[]" value="{{ b }}" />
+            <input type="hidden" name="list3[]" value="{{ c }}" />
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </form>
+    
+    </form>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

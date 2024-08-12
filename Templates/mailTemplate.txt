@@ -1,0 +1,3 @@
+{% for item1, item2, item3 in combined_list %}
+{{ item1 }}, {{ item2 }}, {{ item3 }}
+{% endfor %}
